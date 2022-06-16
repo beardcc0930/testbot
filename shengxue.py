@@ -86,17 +86,19 @@ def handle_message(event):
             
             dr.maximize_window()
             dr.get('http://www.facebook.com')
+        
+        if __name__ == '__main__':
+            run()
+        dr.find_element(By.NAME,"email").send_keys("joe901007@yahoo.com.tw")  # 帳號
+        time.sleep(3)
+        dr.find_element_by_id("pass").send_keys("82585336")  # 密碼
+        dr.find_element_by_name("login").click()
+        time.sleep(3)
+        dr.get("https://www.facebook.com/groups/248305265374276")
+        length = 0
+        time.sleep(2)
+        
         message = TextSendMessage(text='菜心喬是小豬豬')
-#         if __name__ == '__main__':
-#             run()
-#         dr.find_element(By.NAME,"email").send_keys("joe901007@yahoo.com.tw")  # 帳號
-#         time.sleep(3)
-#         dr.find_element_by_id("pass").send_keys("82585336")  # 密碼
-#         dr.find_element_by_name("login").click()
-#         time.sleep(3)
-#         dr.get("https://www.facebook.com/groups/248305265374276")
-#         length = 0
-#         time.sleep(2)
         
 #         test = TextSendMessage(text='過來')
 #         line_bot_api.reply_message(event.reply_token,test)
