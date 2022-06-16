@@ -64,15 +64,15 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == '抽獎':
+#         message = TextSendMessage(text='菜心喬是小豬豬')
+        href_list = []
+        header_list = []
+        new_header = []
+        new_href = []
+        ua = UserAgent()
+        user_agent = ua.random
+        headers = {'user-agent': user_agent}
         message = TextSendMessage(text='菜心喬是小豬豬')
-#         href_list = []
-#         header_list = []
-#         new_header = []
-#         new_href = []
-#         ua = UserAgent()
-#         user_agent = ua.random
-#         headers = {'user-agent': user_agent}
-
 #         save_message = []
 #         def run():
 #             global dr
