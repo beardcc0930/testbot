@@ -63,16 +63,16 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-#     if event.message.text == '抽獎':
-#         href_list = []
-#         header_list = []
-#         new_header = []
-#         new_href = []
-#         ua = UserAgent()
-#         user_agent = ua.random
-#         headers = {'user-agent': user_agent}
+    if event.message.text == '抽獎':
+        href_list = []
+        header_list = []
+        new_header = []
+        new_href = []
+        ua = UserAgent()
+        user_agent = ua.random
+        headers = {'user-agent': user_agent}
 
-#         save_message = []
+        save_message = []
 #         def run():
 #             global dr
 #             chrome_options = webdriver.ChromeOptions()
@@ -151,7 +151,7 @@ def handle_message(event):
 #         message = TextSendMessage(text=string)
 #        else:
 #         message = TextSendMessage(text=event.message.text)
-    message = TextSendMessage(text=event.message.text)
+          message = TextSendMessage(text='菜心喬是小豬豬')
         
     line_bot_api.reply_message(event.reply_token,message)
 
