@@ -96,6 +96,9 @@ def handle_message(event):
         dr.get("https://www.facebook.com/groups/248305265374276")
         length = 0
         time.sleep(2)
+        
+        test = TextSendMessage(text='過來')
+        line_bot_api.reply_message(event.reply_token,test)
 
         for i in range(5): 	# 讓頁面滾動5次
             #article = []
@@ -146,6 +149,9 @@ def handle_message(event):
 
 
         message = TextSendMessage(text=string)
+       else:
+        message = TextSendMessage(text=event.message.text)
+        
     line_bot_api.reply_message(event.reply_token,message)
 
 #主程式
