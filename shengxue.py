@@ -72,21 +72,21 @@ def handle_message(event):
         ua = UserAgent()
         user_agent = ua.random
         headers = {'user-agent': user_agent}
-        message = TextSendMessage(text='菜心喬是小豬豬')
-#         save_message = []
-#         def run():
-#             global dr
-#             chrome_options = webdriver.ChromeOptions()
-#             prefs = {"profile.default_content_setting_values.notifications" : 2}
-#             chrome_options.add_experimental_option("prefs",prefs)
-#             chrome_options.add_argument(("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-#             +"AppleWebKit/537.36 (KHTML, like Gecko)"
-#             +"Chrome/87.0.4280.141 Safari/537.36"))
-#             dr = webdriver.Chrome('./chromedriver',chrome_options=chrome_options)
+        
+        save_message = []
+        def run():
+            global dr
+            chrome_options = webdriver.ChromeOptions()
+            prefs = {"profile.default_content_setting_values.notifications" : 2}
+            chrome_options.add_experimental_option("prefs",prefs)
+            chrome_options.add_argument(("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+            +"AppleWebKit/537.36 (KHTML, like Gecko)"
+            +"Chrome/87.0.4280.141 Safari/537.36"))
+            dr = webdriver.Chrome('./chromedriver',chrome_options=chrome_options)
             
-#             dr.maximize_window()
-#             dr.get('http://www.facebook.com')
-
+            dr.maximize_window()
+            dr.get('http://www.facebook.com')
+        message = TextSendMessage(text='菜心喬是小豬豬')
 #         if __name__ == '__main__':
 #             run()
 #         dr.find_element(By.NAME,"email").send_keys("joe901007@yahoo.com.tw")  # 帳號
