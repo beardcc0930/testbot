@@ -32,6 +32,7 @@ line_bot_api.push_message('U5b8aedc528e5ea2663cbc03fb4b89042', TextSendMessage(t
 import datetime
 date = datetime.date.today()
 
+import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -63,42 +64,42 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == '抽獎':
+#     if event.message.text == '抽獎':
 #         message = TextSendMessage(text='菜心喬是小豬豬')
-        href_list = []
-        header_list = []
-        new_header = []
-        new_href = []
-        ua = UserAgent()
-        user_agent = ua.random
-        headers = {'user-agent': user_agent}
+#         href_list = []
+#         header_list = []
+#         new_header = []
+#         new_href = []
+#         ua = UserAgent()
+#         user_agent = ua.random
+#         headers = {'user-agent': user_agent}
         
-        save_message = []
-        def run():
-            global dr
-            chrome_options = webdriver.ChromeOptions()
-            prefs = {"profile.default_content_setting_values.notifications" : 2}
-            chrome_options.add_experimental_option("prefs",prefs)
-            chrome_options.add_argument(("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-            +"AppleWebKit/537.36 (KHTML, like Gecko)"
-            +"Chrome/87.0.4280.141 Safari/537.36"))
-            dr = webdriver.Chrome('./chromedriver',chrome_options=chrome_options)
+#         save_message = []
+#         def run():
+#             global dr
+#             chrome_options = webdriver.ChromeOptions()
+#             prefs = {"profile.default_content_setting_values.notifications" : 2}
+#             chrome_options.add_experimental_option("prefs",prefs)
+#             chrome_options.add_argument(("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+#             +"AppleWebKit/537.36 (KHTML, like Gecko)"
+#             +"Chrome/87.0.4280.141 Safari/537.36"))
+#             dr = webdriver.Chrome('./chromedriver',chrome_options=chrome_options)
             
-            dr.maximize_window()
-            dr.get('http://www.facebook.com')
+#             dr.maximize_window()
+#             dr.get('http://www.facebook.com')
         
-        if __name__ == '__main__':
-            run()
-        dr.find_element(By.NAME,"email").send_keys("joe901007@yahoo.com.tw")  # 帳號
-        time.sleep(3)
-        dr.find_element_by_id("pass").send_keys("82585336")  # 密碼
-        dr.find_element_by_name("login").click()
-        time.sleep(3)
-        dr.get("https://www.facebook.com/groups/248305265374276")
-        length = 0
-        time.sleep(2)
+#         if __name__ == '__main__':
+#             run()
+#         dr.find_element(By.NAME,"email").send_keys("joe901007@yahoo.com.tw")  # 帳號
+#         time.sleep(3)
+#         dr.find_element_by_id("pass").send_keys("82585336")  # 密碼
+#         dr.find_element_by_name("login").click()
+#         time.sleep(3)
+#         dr.get("https://www.facebook.com/groups/248305265374276")
+#         length = 0
+#         time.sleep(2)
         
-        message = TextSendMessage(text='菜心喬是小豬豬')
+#         message = TextSendMessage(text='菜心喬是小豬豬')
         
 #         test = TextSendMessage(text='過來')
 #         line_bot_api.reply_message(event.reply_token,test)
@@ -154,8 +155,18 @@ def handle_message(event):
 #         message = TextSendMessage(text=string)
 #        else:
 #         message = TextSendMessage(text=event.message.text)
-        
-    line_bot_api.reply_message(event.reply_token,message)
+    if event.message.text == '本周新片':
+        r = requests.get('http://www.atmovies.com.tw/movie/new/')
+        r.encoding = 'utf-8'
+
+        soup = BeautifulSoup(r.text, 'lxml')
+        content = []
+        for i, data in enumerate(soup.select('div.filmTitle a')):
+            if i > 20:
+                break
+            content.append(data.text + '\n' + 'http://www.atmovies.com.tw' + data['href'])
+
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='\n\n'.join(content)))
 
 #主程式
 import os
