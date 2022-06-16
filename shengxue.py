@@ -161,6 +161,7 @@ def handle_message(event):
 
         soup = BeautifulSoup(r.text, 'lxml')
         content = []
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='小勝雪'))
         for i, data in enumerate(soup.select('div.filmTitle a')):
             if i > 20:
                 break
