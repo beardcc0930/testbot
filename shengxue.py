@@ -63,7 +63,8 @@ def callback():
 ##### 基本上程式編輯都在這個function #####
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-#     if event.message.text == '抽獎':
+    if event.message.text == '抽獎':
+        message = TextSendMessage(text='菜心喬是小豬豬')
 #         href_list = []
 #         header_list = []
 #         new_header = []
@@ -151,7 +152,6 @@ def handle_message(event):
 #         message = TextSendMessage(text=string)
 #        else:
 #         message = TextSendMessage(text=event.message.text)
-    message = TextSendMessage(text='菜心喬是小豬豬')
         
     line_bot_api.reply_message(event.reply_token,message)
 
