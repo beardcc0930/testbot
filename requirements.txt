@@ -10,3 +10,4 @@ pyshorteners
 scipy
 selenium
 fake_useragent
+requests
