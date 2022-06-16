@@ -9,5 +9,4 @@ emoji
 pyshorteners 
 scipy
 selenium
-time
 fake_useragent
