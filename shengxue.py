@@ -151,7 +151,7 @@ def handle_message(event):
 #         message = TextSendMessage(text=string)
 #        else:
 #         message = TextSendMessage(text=event.message.text)
-          message = TextSendMessage(text='菜心喬是小豬豬')
+        message = TextSendMessage(text='菜心喬是小豬豬')
         
     line_bot_api.reply_message(event.reply_token,message)
 
